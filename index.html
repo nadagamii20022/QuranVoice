@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>القرآن بالأوامر الصوتية - تشغيل سورة الفاتحة</title>
+  <meta name="description" content="تطبيق ويب عربي لتشغيل القرآن الكريم بالأوامر الصوتية، مصمّم للمكفوفين وضعاف البصر ومتوافق مع قارئات الشاشة.">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- منطقة إعلانات لقارئ الشاشة (تُحدَّث تلقائياً عند تغيّر الحالة) -->
+  <div id="sr-announcer" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <header role="banner">
+    <h1>القرآن بالأوامر الصوتية</h1>
+    <p class="subtitle">تشغيل سورة الفاتحة بالصوت</p>
+  </header>
+
+  <main role="main">
+
+    <section aria-labelledby="voice-heading" class="card">
+      <h2 id="voice-heading">التحكّم الصوتي</h2>
+
+      <!-- ملف الصوت: يُفضَّل WAV مباشرة، ويُقبل MP3 كبديل إن لم يوجد WAV -->
+      <audio id="quran-audio" preload="metadata">
+        <source src="audio/001.wav" type="audio/wav">
+        <source src="audio/001.mp3" type="audio/mpeg">
+        متصفحك لا يدعم عنصر الصوت.
+      </audio>
+
+      <button type="button" id="btn-voice" class="btn btn-voice"
+              aria-pressed="false" aria-keyshortcuts="v">
+        🎙️ بدء الإصغاء للأوامر الصوتية
+      </button>
+
+      <p id="voice-status" class="status-line" aria-live="polite">
+        حالة الميكروفون: متوقّف
+      </p>
+
+      <p id="voice-result" class="status-line muted" aria-live="polite"></p>
+
+      <p id="play-status" class="status-line playback">
+        الحالة: جاهز للتشغيل
+      </p>
+
+      <!-- شريط التقدّم: يمتلاء مع مرور الوقت حتى نهاية المقطع -->
+      <div id="progress-bar"
+           class="progress"
+           role="progressbar"
+           aria-label="تقدّم تشغيل السورة"
+           aria-valuemin="0"
+           aria-valuemax="100"
+           aria-valuenow="0"
+           aria-valuetext="0 بالمئة">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+
+      <p id="time-status" class="status-line muted">
+        المنقضي: 00:00 &mdash; المتبقي: جارٍ التحميل&hellip;
+      </p>
+
+      <div class="hint-box">
+        <h3>الأوامر المدعومة</h3>
+        <ul>
+          <li><strong>«الفاتحة»</strong> &mdash; تشغيل سورة الفاتحة</li>
+          <li><strong>«إيقاف»</strong> أو <strong>«توقف»</strong> &mdash; إيقاف مؤقت</li>
+          <li><strong>«استئناف»</strong> أو <strong>«تابع»</strong> &mdash; متابعة التشغيل</li>
+          <li><strong>«إعادة»</strong> أو <strong>«من البداية»</strong> &mdash; إعادة التشغيل</li>
+          <li><strong>«اصمت»</strong> &mdash; إطفاء الميكروفون</li>
+        </ul>
+        <p class="hint-note">
+          أثناء تشغيل التلاوة لا يُسمع التطبيق سوى أمر <strong>«إيقاف»</strong>.
+          سبب ذلك أن الميكروفون قد يلتقط صوت التلاوة نفسه، فيمنع ذلك تكرار
+          التشغيل والإيقاف وتقطّع الصوت. بعد الإيقاف تعود بقية الأوامر فعّالة.
+        </p>
+      </div>
+
+      <p id="voice-support" class="status-line muted"></p>
+    </section>
+
+  </main>
+
+<footer role="contentinfo">
+    <p>يعمل بملفات MP3 مباشرة &mdash; بجودة عالية.</p>
+</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
